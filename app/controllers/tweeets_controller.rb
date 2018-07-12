@@ -2,6 +2,7 @@
 
 class TweeetsController < ApplicationController
   before_action :set_tweeet, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /tweeets
   # GET /tweeets.json
@@ -12,7 +13,8 @@ class TweeetsController < ApplicationController
 
   # GET /tweeets/1
   # GET /tweeets/1.json
-  def show; end
+  def show;
+  end
 
   # GET /tweeets/new
   def new
@@ -20,7 +22,8 @@ class TweeetsController < ApplicationController
   end
 
   # GET /tweeets/1/edit
-  def edit; end
+  def edit;
+  end
 
   # POST /tweeets
   # POST /tweeets.json
@@ -29,11 +32,11 @@ class TweeetsController < ApplicationController
 
     respond_to do |format|
       if @tweeet.save
-        format.html { redirect_to root_path, notice: 'Tweeet was successfully created.' }
-        format.json { render :show, status: :created, location: @tweeet }
+        format.html {redirect_to root_path, notice: 'Tweeet was successfully created.'}
+        format.json {render :show, status: :created, location: @tweeet}
       else
-        format.html { render :new }
-        format.json { render json: @tweeet.errors, status: :unprocessable_entity }
+        format.html {render :new}
+        format.json {render json: @tweeet.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -43,11 +46,11 @@ class TweeetsController < ApplicationController
   def update
     respond_to do |format|
       if @tweeet.update(tweeet_params)
-        format.html { redirect_to @tweeet, notice: 'Tweeet was successfully updated.' }
-        format.json { render :show, status: :ok, location: @tweeet }
+        format.html {redirect_to @tweeet, notice: 'Tweeet was successfully updated.'}
+        format.json {render :show, status: :ok, location: @tweeet}
       else
-        format.html { render :edit }
-        format.json { render json: @tweeet.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @tweeet.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -57,8 +60,8 @@ class TweeetsController < ApplicationController
   def destroy
     @tweeet.destroy
     respond_to do |format|
-      format.html { redirect_to tweeets_url, notice: 'Tweeet was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html {redirect_to tweeets_url, notice: 'Tweeet was successfully destroyed.'}
+      format.json {head :no_content}
     end
   end
 
