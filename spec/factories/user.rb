@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
+require 'ffaker'
+
 FactoryBot.define do
   factory :user do
-    email 'test@mail.com'
-    password '123123'
+    sequence(:email) { |n| "test#{n}@example.com" }
+
+    password FFaker::Internet.unique.password
   end
 end

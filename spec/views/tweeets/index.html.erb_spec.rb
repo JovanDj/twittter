@@ -4,13 +4,18 @@ require 'rails_helper'
 
 RSpec.describe 'tweeets/index', type: :view do
   before(:each) do
+    assign(:users, [
+             build(:user),
+             build(:user)
+           ])
+
     assign(:tweeets, [
-             Tweeet.create!(content: 'tweeet 1'),
-             Tweeet.create!(content: 'tweeet 2')
+             build(:tweeet),
+             build(:tweeet)
            ])
 
     assign(:tweeet, [
-             Tweeet.create!(content: 'tweeet')
+             build(:tweeet)
            ])
   end
 

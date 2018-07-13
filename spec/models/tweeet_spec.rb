@@ -3,16 +3,35 @@
 require 'rails_helper'
 
 RSpec.describe Tweeet, type: :model do
-  it 'is invalid without a tweeet' do
-    expect(Tweeet.new).to be_invalid
+
+  subject {described_class.new}
+
+  let(:user) {build :user}
+
+  it 'is invalid if empty' do
+    expect(subject).to be_invalid
+  end
+
+  it 'is invalid without user' do
+    subject.user = nil
+    expect(subject).to_not be_valid
+  end
+
+  it 'is valid with user' do
+    subject.user = user
+    subject.content = 'Tweeet'
+    expect(subject).to be_valid
   end
 
   it 'is valid with content' do
-    expect(Tweeet.new(content: 'tweeet content')).to be_valid
+    subject.content = 'tweeet'
+    subject.user = user
+    expect(subject).to be_valid
   end
 
   it 'is invalid without content' do
-    expect(Tweeet.new(content: nil)).not_to be_valid
+    subject.content = nil
+    expect(subject).not_to be_valid
   end
 
   it 'cannot have blank content' do
@@ -20,15 +39,14 @@ RSpec.describe Tweeet, type: :model do
   end
 
   it 'cannot have content longer than 100 characters' do
-    expect(Tweeet.new(content: 'a' * 101)).not_to be_valid
-    expect(Tweeet.new(content: 'a' * 100)).to be_valid
-    expect(Tweeet.new(content: 'a' * 99)).to be_valid
+    expect(Tweeet.new(content: 'a' * 101, user: user)).not_to be_valid
+    expect(Tweeet.new(content: 'a' * 100, user: user)).to be_valid
+    expect(Tweeet.new(content: 'a' * 99, user: user)).to be_valid
   end
 
   it 'it has content of at least 1 character' do
-    expect(Tweeet.new(content: 'a')).to be_valid
+    expect(Tweeet.new(content: 'a', user: user)).to be_valid
   end
 
-  it {should belong_to(:user)}
 
 end

@@ -98,6 +98,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    database_cleaner (1.7.0)
     devise (4.4.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -116,6 +117,7 @@ GEM
     factory_bot_rails (4.10.0)
       factory_bot (~> 4.10.0)
       railties (>= 3.0.0)
+    ffaker (2.9.0)
     ffi (1.9.25)
     formatador (0.2.5)
     globalid (0.4.1)
@@ -258,6 +260,8 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
     shellany (0.0.1)
+    shoulda-matchers (3.1.2)
+      activesupport (>= 4.0.0)
     simple_form (4.0.1)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -310,8 +314,10 @@ DEPENDENCIES
   client_side_validations!
   client_side_validations-simple_form!
   coffee-rails (~> 4.2)
+  database_cleaner
   devise (~> 4.4, >= 4.4.3)
   factory_bot_rails
+  ffaker
   gravatar_image_tag (~> 1.2)
   guard (~> 2.14, >= 2.14.2)
   guard-livereload (~> 2.5, >= 2.5.2)
@@ -324,6 +330,7 @@ DEPENDENCIES
   rspec-rails (~> 3.7)
   sass-rails (~> 5.0)
   selenium-webdriver
+  shoulda-matchers (~> 3.1)
   simple_form (~> 4.0, >= 4.0.1)
   spring
   spring-watcher-listen (~> 2.0.0)

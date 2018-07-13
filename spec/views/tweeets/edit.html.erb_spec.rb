@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'tweeets/edit', type: :view do
   before(:each) do
-    @tweeet = assign(:tweeet, Tweeet.create!(content: 'tweeet'))
+    @tweeet = FactoryBot.create(:tweeet)
   end
 
   it 'renders the edit tweeet form' do

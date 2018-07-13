@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'tweeets/new', type: :view do
   before(:each) do
-    assign(:tweeet, Tweeet.new(content: 'tweeet'))
+    assign(:tweeet, FactoryBot.build(:tweeet))
   end
 
   it 'renders new tweeet form' do
