@@ -28,4 +28,7 @@ RSpec.describe Tweeet, type: :model do
   it 'it has content of at least 1 character' do
     expect(Tweeet.new(content: 'a')).to be_valid
   end
+
+  it {should belong_to(:user)}
+
 end

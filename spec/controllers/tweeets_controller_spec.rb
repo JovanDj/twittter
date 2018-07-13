@@ -29,13 +29,19 @@ RSpec.describe TweeetsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Tweeet. As you add validations to Tweeet, be sure to
   # adjust the attributes here as well.
+
+
+
+
+
   let(:valid_attributes) do
-    { content: 'tweeet' }
+    { content: 'tweeet', user: user }
   end
 
   let(:invalid_attributes) do
-    { content: nil }
+    { content: nil, user: user }
   end
+
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -48,22 +54,22 @@ RSpec.describe TweeetsController, type: :controller do
     it 'returns a success response' do
       tweeet = Tweeet.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
   describe 'GET #show' do
     it 'returns a success response' do
       tweeet = Tweeet.create! valid_attributes
-      get :show, params: { id: tweeet.to_param }, session: valid_session
-      expect(response).to be_success
+      get :show, params: { id: tweeet.to_param, user: user }, session: valid_session
+      expect(response).to be_successful
     end
   end
 
   describe 'GET #new' do
     it 'returns a success response' do
       get :new, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -71,7 +77,7 @@ RSpec.describe TweeetsController, type: :controller do
     it 'returns a success response' do
       tweeet = Tweeet.create! valid_attributes
       get :edit, params: { id: tweeet.to_param }, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -92,7 +98,7 @@ RSpec.describe TweeetsController, type: :controller do
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'new' template)" do
         post :create, params: { tweeet: invalid_attributes }, session: valid_session
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end
@@ -100,14 +106,14 @@ RSpec.describe TweeetsController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        { content: 'tweeet new' }
       end
 
       it 'updates the requested tweeet' do
         tweeet = Tweeet.create! valid_attributes
         put :update, params: { id: tweeet.to_param, tweeet: new_attributes }, session: valid_session
         tweeet.reload
-        skip('Add assertions for updated state')
+        expect(tweeet.content).to eq('tweeet new')
       end
 
       it 'redirects to the tweeet' do
@@ -121,7 +127,7 @@ RSpec.describe TweeetsController, type: :controller do
       it "returns a success response (i.e. to display the 'edit' template)" do
         tweeet = Tweeet.create! valid_attributes
         put :update, params: { id: tweeet.to_param, tweeet: invalid_attributes }, session: valid_session
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end

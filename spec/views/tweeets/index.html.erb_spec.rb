@@ -5,8 +5,12 @@ require 'rails_helper'
 RSpec.describe 'tweeets/index', type: :view do
   before(:each) do
     assign(:tweeets, [
-             Tweeet.new(content: 'tweeet 1'),
-             Tweeet.new(content: 'tweeet 2')
+             Tweeet.create!(content: 'tweeet 1'),
+             Tweeet.create!(content: 'tweeet 2')
+           ])
+
+    assign(:tweeet, [
+             Tweeet.create!(content: 'tweeet')
            ])
   end
 
