@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "tweeets/show", type: :view do
+RSpec.describe 'tweeets/show', type: :view do
   before(:each) do
-    @tweeet = assign(:tweeet, Tweeet.create!())
+    @tweeet = assign(:tweeet, Tweeet.create!(content: 'tweeet'))
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes' do
     render
   end
 end

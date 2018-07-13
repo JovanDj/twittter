@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-git_source(:github) {|repo| "https://github.com/#{repo}.git"}
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
@@ -42,13 +42,17 @@ gem 'bulma-rails', '~> 0.7.1'
 gem 'devise', '~> 4.4', '>= 4.4.3'
 gem 'gravatar_image_tag', '~> 1.2'
 gem 'simple_form', '~> 4.0', '>= 4.0.1'
+gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations'
+gem 'client_side_validations-simple_form', github: 'DavyJonesLocker/client_side_validations-simple_form'
+gem 'jquery-rails'
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec-rails', '~> 3.7'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
-
+  gem 'rspec-rails', '~> 3.7'
 end
 
 group :development do
@@ -58,8 +62,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'better_errors', '~> 2.4'
   gem 'guard', '~> 2.14', '>= 2.14.2'
-  gem 'guard-rspec', require: false
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
+  gem 'guard-rspec', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
