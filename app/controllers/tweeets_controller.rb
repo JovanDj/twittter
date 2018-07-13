@@ -2,7 +2,7 @@
 
 class TweeetsController < ApplicationController
   before_action :set_tweeet, only: %i[show edit update destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  #before_action :authenticate_user!, except: [:index, :show]
 
   # GET /tweeets
   # GET /tweeets.json
@@ -83,6 +83,6 @@ class TweeetsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def tweeet_params
-    params.require(:tweeet).permit(:tweeet)
+    params.require(:tweeet).permit(:content)
   end
 end

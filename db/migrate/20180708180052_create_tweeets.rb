@@ -3,7 +3,7 @@
 class CreateTweeets < ActiveRecord::Migration[5.2]
   def change
     create_table :tweeets do |t|
-      t.text :tweeet
+      t.text :content
 
       t.timestamps
     end

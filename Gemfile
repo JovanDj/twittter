@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:github) {|repo| "https://github.com/#{repo}.git"}
 
 ruby '2.5.1'
 
@@ -45,12 +45,10 @@ gem 'simple_form', '~> 4.0', '>= 4.0.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-<<<<<<< HEAD
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-    gem 'rspec-rails', '~> 3.7'
-=======
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
->>>>>>> 89d8878288cfda0421d0e6d9e2e56ecbcc4cef75
+  gem 'rspec-rails', '~> 3.7'
+  gem 'factory_bot_rails'
+
 end
 
 group :development do
@@ -60,7 +58,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'better_errors', '~> 2.4'
   gem 'guard', '~> 2.14', '>= 2.14.2'
-   gem 'guard-rspec', require: false
+  gem 'guard-rspec', require: false
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'

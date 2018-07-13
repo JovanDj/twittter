@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2018_07_12_110445) do
 
   create_table "tweeets", force: :cascade do |t|
-    t.text "tweeet"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
