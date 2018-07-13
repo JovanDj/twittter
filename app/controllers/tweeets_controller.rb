@@ -10,6 +10,7 @@ class TweeetsController < ApplicationController
   # GET /tweeets/1
   # GET /tweeets/1.json
   def show
+
   end
 
   # GET /tweeets/new
@@ -64,7 +65,12 @@ class TweeetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweeet
-      @tweeet = Tweeet.find(params[:id])
+      
+      begin
+       @tweeet = Tweeet.find(params[:id])
+      rescue
+        redirect_to root_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
