@@ -66,7 +66,6 @@ class TweeetsController < ApplicationController
   end
 
   private
-<<<<<<< HEAD
     # Use callbacks to share common setup or constraints between actions.
     def set_tweeet
       
@@ -76,8 +75,6 @@ class TweeetsController < ApplicationController
         redirect_to root_path
       end
     end
-=======
->>>>>>> 89d8878288cfda0421d0e6d9e2e56ecbcc4cef75
 
   # Use callbacks to share common setup or constraints between actions.
   def set_tweeet
