@@ -5,7 +5,7 @@ require 'ffaker'
 FactoryBot.define do
   factory :user do
     sequence(:email) { |n| "test#{n}@example.com" }
-
-    password FFaker::Internet.unique.password
+    password "password"
+    password_confirmation "password"
   end
 end

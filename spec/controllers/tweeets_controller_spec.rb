@@ -31,25 +31,24 @@ RSpec.describe TweeetsController, type: :controller do
   # adjust the attributes here as well.
 
   let(:tweeet) do
-    build_stubbed :tweeet
+    create :tweeet
   end
 
-  let(:user) do
-    build_stubbed :user
-  end
+  let(:valid_attributes) {
+    {content: 'tweeet'}
+  }
 
   let(:invalid_attributes) do
-    build :tweeet, content: nil
+    {content: nil}
   end
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # TweeetsController. Be sure to keep this updated too.
   let(:valid_session) do
-    {'warden.user.user.key' => session['warden.user.user.key']}
+    {email: 'test@mail.com', password: '123123'}
   end
 
   describe 'GET #index' do
+    login_user
+
     it 'returns a success response' do
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
@@ -57,6 +56,8 @@ RSpec.describe TweeetsController, type: :controller do
   end
 
   describe 'GET #show' do
+    login_user
+
     it 'returns a success response' do
       get :show, params: {id: tweeet.to_param}, session: valid_session
       expect(response).to be_successful
@@ -64,21 +65,26 @@ RSpec.describe TweeetsController, type: :controller do
   end
 
   describe 'GET #new' do
+    login_user
+
     it 'returns a success response' do
-      get :new, params: {}, session: valid_session
+      get :new, session: valid_session
       expect(response).to be_successful
     end
   end
 
   describe 'GET #edit' do
+    login_user
+
     it 'returns a success response' do
-      tweeet = Tweeet.create! valid_attributes
       get :edit, params: {id: tweeet.to_param}, session: valid_session
       expect(response).to be_successful
     end
   end
 
   describe 'POST #create' do
+    login_user
+
     context 'with valid params' do
       it 'creates a new Tweeet' do
         expect do
@@ -95,34 +101,33 @@ RSpec.describe TweeetsController, type: :controller do
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'new' template)" do
         post :create, params: {tweeet: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+        expect(response).to_not be_successful
       end
     end
   end
 
   describe 'PUT #update' do
+    login_user
+
     context 'with valid params' do
       let(:new_attributes) do
         {content: 'tweeet new'}
       end
 
       it 'updates the requested tweeet' do
-        tweeet = Tweeet.create! valid_attributes
         put :update, params: {id: tweeet.to_param, tweeet: new_attributes}, session: valid_session
         tweeet.reload
         expect(tweeet.content).to eq('tweeet new')
       end
 
-      it 'redirects to the tweeet' do
-        tweeet = Tweeet.create! valid_attributes
+      it 'redirects to the root path' do
         put :update, params: {id: tweeet.to_param, tweeet: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(tweeet)
+        expect(response).to redirect_to root_path
       end
     end
 
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        tweeet = Tweeet.create! valid_attributes
         put :update, params: {id: tweeet.to_param, tweeet: invalid_attributes}, session: valid_session
         expect(response).to be_successful
       end
@@ -130,15 +135,17 @@ RSpec.describe TweeetsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    login_user
+
     it 'destroys the requested tweeet' do
-      tweeet = Tweeet.create! valid_attributes
+      tweeet = Tweeet.create!(content: 'tweeet', user: User.create!(email: 'test@mail.com', password: 123123))
+
       expect do
         delete :destroy, params: {id: tweeet.to_param}, session: valid_session
       end.to change(Tweeet, :count).by(-1)
     end
 
-    it 'redirects to the tweeets list' do
-      tweeet = Tweeet.create! valid_attributes
+    it 'redirects to the tweeet' do
       delete :destroy, params: {id: tweeet.to_param}, session: valid_session
       expect(response).to redirect_to(tweeets_url)
     end
