@@ -10,34 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_13_132518) do
+ActiveRecord::Schema.define(version: 2018_07_15_182755) do
 
-  create_table "tweeets", force: :cascade do |t|
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "likes", force: :cascade do |t|
     t.integer "user_id"
-    t.index ["user_id"], name: "index_tweeets_on_user_id"
+    t.integer "tweeet_id"
+    t.index ["tweeet_id"], name: "index_likes_on_tweeet_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "username"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["username"], name: "index_users_on_username", unique: true
-  end
+# Could not dump table "tweeets" because of following StandardError
+#   Unknown type 'likes' for column 'references'
+
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'likes' for column 'references'
 
 end

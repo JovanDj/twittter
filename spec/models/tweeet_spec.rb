@@ -60,5 +60,5 @@ RSpec.describe Tweeet, type: :model do
     expect(Tweeet.new(content: "a", user: user)).to be_valid
   end
 
-  it { should belong_to(:user) }
+  it { should have_many(:likes)}
 end
