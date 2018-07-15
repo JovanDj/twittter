@@ -30,19 +30,19 @@ RSpec.describe TweeetsController, type: :controller do
   # Tweeet. As you add validations to Tweeet, be sure to
   # adjust the attributes here as well.
 
-  let(:tweeet) do
+  let!(:tweeet) do
     create :tweeet
   end
 
-  let(:valid_attributes) {
+  let!(:valid_attributes) {
     {content: 'tweeet'}
   }
 
-  let(:invalid_attributes) do
+  let!(:invalid_attributes) do
     {content: nil}
   end
 
-  let(:valid_session) do
+  let!(:valid_session) do
     {email: 'test@mail.com', password: '123123'}
   end
 
