@@ -3,7 +3,6 @@
 require "rails_helper"
 
 RSpec.describe TweeetsController, type: :controller do
-
   let!(:tweeet) do
     create :tweeet
   end
