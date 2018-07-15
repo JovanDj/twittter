@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe 'tweeets/index', type: :view do
+RSpec.describe "tweeets/index", type: :view do
   before(:each) do
     assign(:users, [
              build(:user),
@@ -19,7 +19,7 @@ RSpec.describe 'tweeets/index', type: :view do
            ])
   end
 
-  it 'renders a list of tweeets' do
+  it "renders a list of tweeets" do
     render
   end
 end

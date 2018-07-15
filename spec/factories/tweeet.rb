@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'ffaker'
+require "ffaker"
 
 FactoryBot.define do
   factory :tweeet do

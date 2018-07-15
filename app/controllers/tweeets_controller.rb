@@ -7,7 +7,7 @@ class TweeetsController < ApplicationController
   # GET /tweeets
   # GET /tweeets.json
   def index
-    @tweeets = Tweeet.all.order('created_at DESC')
+    @tweeets = Tweeet.all.order("created_at DESC")
     @tweeet = Tweeet.new
     @users = User.all
   end
@@ -31,10 +31,10 @@ class TweeetsController < ApplicationController
 
     respond_to do |format|
       if @tweeet.save
-        format.html { redirect_to root_path, notice: 'Tweeet was successfully created.' }
+        format.html { redirect_to root_path, notice: "Tweeet was successfully created." }
         format.json { render :show, status: :created, location: @tweeet }
       else
-        format.html { redirect_to root_path, alert: 'Unable to create tweeet' }
+        format.html { redirect_to root_path, alert: "Unable to create tweeet" }
         format.json { render json: @tweeet.errors, status: :unprocessable_entity }
       end
     end
@@ -45,7 +45,7 @@ class TweeetsController < ApplicationController
   def update
     respond_to do |format|
       if @tweeet.update(tweeet_params)
-        format.html { redirect_to root_path, notice: 'Tweeet was successfully updated.' }
+        format.html { redirect_to root_path, notice: "Tweeet was successfully updated." }
         format.json { render :show, status: :ok, location: @tweeet }
       else
         format.html { render :edit }
@@ -59,22 +59,22 @@ class TweeetsController < ApplicationController
   def destroy
     @tweeet.destroy
     respond_to do |format|
-      format.html { redirect_to tweeets_url, notice: 'Tweeet was successfully destroyed.' }
+      format.html { redirect_to tweeets_url, notice: "Tweeet was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_tweeet
-    @tweeet = Tweeet.find(params[:id])
-  rescue StandardError
-    redirect_to root_path
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_tweeet
+      @tweeet = Tweeet.find(params[:id])
+    rescue StandardError
+      redirect_to root_path
+    end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def tweeet_params
-    params.require(:tweeet).permit(:content)
-  end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def tweeet_params
+      params.require(:tweeet).permit(:content)
+    end
 end
